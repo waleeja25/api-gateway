@@ -19,7 +19,7 @@ export class UserController {
 
   @Post()
   createUser(@Body() dto: CreateUserDto) {
-    return this.userService.createUser({
+    return this.userService.create({
       name: dto.name,
       email: dto.email,
       password: dto.password,
@@ -28,20 +28,26 @@ export class UserController {
 
   @Get()
   listUsers() {
-    return this.userService.listUsers();
+    return this.userService.list();
   }
 
   @Get(':id')
-  getUserById(@Param('id', PositiveIntPipe) id: number) {
-    return this.userService.getUserById({ id });
+  getUserById(
+    @Param('id', PositiveIntPipe)
+    id: number,
+  ) {
+    return this.userService.getById(id);
   }
 
   @Patch(':id')
   updateUser(
-    @Param('id', PositiveIntPipe) id: number,
-    @Body() dto: UpdateUserDto,
+    @Param('id', PositiveIntPipe)
+    id: number,
+
+    @Body()
+    dto: UpdateUserDto,
   ) {
-    return this.userService.updateUser({
+    return this.userService.update({
       id,
       name: dto.name,
       email: dto.email,
@@ -50,7 +56,10 @@ export class UserController {
   }
 
   @Delete(':id')
-  deleteUser(@Param('id', PositiveIntPipe) id: number) {
-    return this.userService.deleteUser({ id });
+  deleteUser(
+    @Param('id', PositiveIntPipe)
+    id: number,
+  ) {
+    return this.userService.delete(id);
   }
 }
