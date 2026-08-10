@@ -32,6 +32,6 @@ export abstract class CrudGrpcGateway<
   }
 
   list() {
-    return this.call(this.service.list());
+    return this.call(this.service.list({}));
   }
 }

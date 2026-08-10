@@ -14,5 +14,5 @@ export interface CrudGrpcService<
 
   delete(request: { id: number }): Observable<void>;
 
-  list(): Observable<TListResponse>;
+  list(request?: any): Observable<TListResponse>;
 }

@@ -13,6 +13,7 @@ import { mapHttpException } from '../errors/http-error.mapper';
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost): void {
+    console.error(exception);
     const context = host.switchToHttp();
     const response = context.getResponse<Response>();
 
