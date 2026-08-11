@@ -24,7 +24,7 @@ export class CategoryController {
 
   @Get()
   async list() {
-    return this.categoryService.list();
+    return this.categoryService.list({});
   }
 
   @Get(':id')

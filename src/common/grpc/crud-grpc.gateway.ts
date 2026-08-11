@@ -8,6 +8,7 @@ export abstract class CrudGrpcGateway<
   TUpdateRequest,
   TEntity,
   TListResponse,
+  TListRequest,
 > extends BaseGrpcClient<
   CrudGrpcService<TCreateRequest, TUpdateRequest, TEntity, TListResponse>
 > {
@@ -31,7 +32,7 @@ export abstract class CrudGrpcGateway<
     return this.call(this.service.delete({ id }));
   }
 
-  list() {
-    return this.call(this.service.list({}));
+  list(request: TListRequest): Promise<TListResponse> {
+    return this.call(this.service.list(request));
   }
 }

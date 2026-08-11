@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
 
 import { CrudGrpcGateway, GRPC_CLIENTS, GRPC_SERVICES } from '../common';
+import type { Empty } from '../common';
 
 import {
   CreateUserRequest,
@@ -15,7 +16,8 @@ export class UserService extends CrudGrpcGateway<
   CreateUserRequest,
   UpdateUserRequest,
   User,
-  UserListResponse
+  UserListResponse,
+  Empty
 > {
   constructor(
     @Inject(GRPC_CLIENTS.USER)

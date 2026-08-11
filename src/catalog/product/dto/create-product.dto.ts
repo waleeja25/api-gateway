@@ -16,7 +16,7 @@ export class CreateProductDto {
 
   @IsString()
   @IsOptional()
-  description?: string;
+  description!: string;
 
   @IsPositive({
     message: 'Price must be greater than 0',

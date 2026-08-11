@@ -28,7 +28,7 @@ export class UserController {
 
   @Get()
   listUsers() {
-    return this.userService.list();
+    return this.userService.list({});
   }
 
   @Get(':id')
