@@ -3,7 +3,6 @@ import {
   Catch,
   ExceptionFilter,
   HttpException,
-  Logger,
 } from '@nestjs/common';
 
 import type { Response } from 'express';
@@ -13,12 +12,7 @@ import { mapHttpException } from '../errors/http-error.mapper';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
-  private readonly logger = new Logger(GlobalExceptionFilter.name);
   catch(exception: unknown, host: ArgumentsHost): void {
-    this.logger.error(
-      'Unhandled exception',
-      exception instanceof Error ? exception.stack : String(exception),
-    );
     const context = host.switchToHttp();
     const response = context.getResponse<Response>();
 
