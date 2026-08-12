@@ -5,9 +5,10 @@ import { UserModule } from './user/user.module';
 import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter, LoggingMiddleware } from './common';
 import { CatalogModule } from './catalog/catalog.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
-  imports: [AppConfigModule, UserModule, CatalogModule],
+  imports: [AppConfigModule, UserModule, CatalogModule, OrderModule],
   providers: [
     {
       provide: APP_FILTER,
