@@ -6,9 +6,16 @@ import { APP_FILTER } from '@nestjs/core';
 import { GlobalExceptionFilter, LoggingMiddleware } from './common';
 import { CatalogModule } from './catalog/catalog.module';
 import { OrderModule } from './order/order.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
-  imports: [AppConfigModule, UserModule, CatalogModule, OrderModule],
+  imports: [
+    AppConfigModule,
+    UserModule,
+    CatalogModule,
+    OrderModule,
+    HealthModule,
+  ],
   providers: [
     {
       provide: APP_FILTER,
