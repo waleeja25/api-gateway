@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import { IsInt, IsNotEmpty, IsPositive } from 'class-validator';
 
 export class CreateOrderDto {
   @IsNotEmpty({
@@ -24,16 +24,13 @@ export class CreateOrderDto {
   productId!: number;
 
   @IsNotEmpty({
-    message: 'Total amount is required',
+    message: 'Quantity is required',
   })
-  @IsNumber(
-    {},
-    {
-      message: 'Total amount must be a number',
-    },
-  )
+  @IsInt({
+    message: 'Quantity must be an integer',
+  })
   @IsPositive({
-    message: 'Total amount must be greater than 0',
+    message: 'Quantity must be greater than 0',
   })
-  totalAmount!: number;
+  quantity!: number;
 }
