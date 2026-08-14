@@ -18,7 +18,7 @@ import { ProductService } from './product/product.service';
         options: {
           package: GRPC_PACKAGES.CATALOG,
           protoPath: PROTO_PATHS.CATALOG,
-          url: process.env.CATALOG_SERVICE_URL,
+          url: process.env.GRPC_CATALOG_SERVICE_URL,
         },
       },
     ]),

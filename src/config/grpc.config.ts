@@ -1,5 +1,5 @@
 import { registerAs } from '@nestjs/config';
 
 export default registerAs('grpc', () => ({
-  userServiceUrl: process.env.USER_SERVICE_URL,
+  userServiceUrl: process.env.GRPC_USER_SERVICE_URL,
 }));

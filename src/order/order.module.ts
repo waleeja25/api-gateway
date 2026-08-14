@@ -15,7 +15,7 @@ import { OrderController } from './order.controller';
         options: {
           package: GRPC_PACKAGES.ORDER,
           protoPath: PROTO_PATHS.ORDER,
-          url: process.env.ORDER_SERVICE_URL,
+          url: process.env.GRPC_ORDER_SERVICE_URL,
         },
       },
     ]),
