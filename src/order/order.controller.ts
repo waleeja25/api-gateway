@@ -8,12 +8,13 @@ import {
   Query,
 } from '@nestjs/common';
 
-import { PositiveIntPipe } from '../common';
+import { PositiveIntPipe, ResourceName } from '../common';
 
 import { CreateOrderDto, ListOrderDto } from './dto';
 
 import { OrderService } from './order.service';
 
+@ResourceName('Order')
 @Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}

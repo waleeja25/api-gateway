@@ -8,11 +8,12 @@ import {
   Post,
 } from '@nestjs/common';
 
-import { PositiveIntPipe } from '../../common';
+import { PositiveIntPipe, ResourceName } from '../../common';
 import { CategoryService } from './category.service';
 
 import { CreateCategoryDto, UpdateCategoryDto } from './dto';
 
+@ResourceName('Category')
 @Controller('categories')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}

@@ -8,11 +8,12 @@ import {
   Post,
 } from '@nestjs/common';
 
-import { PositiveIntPipe } from '../common';
+import { PositiveIntPipe, ResourceName } from '../common';
 
 import { UserService } from './user.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 
+@ResourceName('User')
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}

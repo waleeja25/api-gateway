@@ -2,8 +2,12 @@ import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 
 import { AppConfigModule } from './config';
 import { UserModule } from './user/user.module';
-import { APP_FILTER } from '@nestjs/core';
-import { GlobalExceptionFilter, LoggingMiddleware } from './common';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import {
+  GlobalExceptionFilter,
+  LoggingMiddleware,
+  ResponseInterceptor,
+} from './common';
 import { CatalogModule } from './catalog/catalog.module';
 import { OrderModule } from './order/order.module';
 import { HealthModule } from './health/health.module';
@@ -20,6 +24,10 @@ import { HealthModule } from './health/health.module';
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ResponseInterceptor,
     },
   ],
 })
