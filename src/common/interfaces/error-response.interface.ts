@@ -1,6 +1,7 @@
 export interface ErrorResponse {
-  statusCode: number;
+  success: false;
   message: string | string[];
+  data: null;
 }
 
 export interface ResolvedError {

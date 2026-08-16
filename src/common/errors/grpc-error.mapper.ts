@@ -22,8 +22,9 @@ export function mapGrpcException(exception: unknown): ResolvedError {
     return {
       status,
       body: {
-        statusCode: status,
+        success: false,
         message: domainError.message,
+        data: null,
       },
     };
   }
@@ -33,9 +34,10 @@ export function mapGrpcException(exception: unknown): ResolvedError {
   return {
     status,
     body: {
-      statusCode: status,
+      success: false,
       message:
         grpcError.details ?? grpcError.message ?? 'Internal server error',
+      data: null,
     },
   };
 }
@@ -44,8 +46,9 @@ function createInternalServerError(): ResolvedError {
   return {
     status: HttpStatus.INTERNAL_SERVER_ERROR,
     body: {
-      statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+      success: false,
       message: 'Internal server error',
+      data: null,
     },
   };
 }

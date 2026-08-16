@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException } from '@nestjs/common';
 
 import type { ResolvedError } from '../interfaces';
 
@@ -27,8 +27,9 @@ export function mapHttpException(exception: HttpException): ResolvedError {
   return {
     status,
     body: {
-      statusCode: status || HttpStatus.INTERNAL_SERVER_ERROR,
+      success: false,
       message,
+      data: null,
     },
   };
 }
