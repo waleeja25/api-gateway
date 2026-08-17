@@ -8,4 +8,6 @@ export const DOMAIN_ERROR_HTTP_STATUS: Record<string, HttpStatus> = {
   CATEGORY_NAME_EXISTS: HttpStatus.CONFLICT,
 
   REFERENCED_ENTITY_MISSING: HttpStatus.BAD_REQUEST,
+
+  VALIDATION_ERROR: HttpStatus.BAD_REQUEST,
 };
