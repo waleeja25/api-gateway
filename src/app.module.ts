@@ -4,6 +4,7 @@ import { AppConfigModule } from './config';
 import { UserModule } from './user/user.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import {
+  BadRequestExceptionFilter,
   GlobalExceptionFilter,
   LoggingMiddleware,
   ResponseInterceptor,
@@ -24,6 +25,10 @@ import { HealthModule } from './health/health.module';
     {
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: BadRequestExceptionFilter,
     },
     {
       provide: APP_INTERCEPTOR,
