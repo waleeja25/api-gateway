@@ -1,22 +1,36 @@
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
-import { GRPC_CLIENTS, GRPC_PACKAGES, PROTO_PATHS } from '../common';
+import {
+  GRPC_CLIENTS,
+  GRPC_PACKAGES,
+  PROTO_PATHS,
+  GRPC_CONFIG_KEYS,
+} from '../common';
 
 import { OrderService } from './order.service';
 import { OrderController } from './order.controller';
 
 @Module({
   imports: [
-    ClientsModule.register([
+    ClientsModule.registerAsync([
       {
         name: GRPC_CLIENTS.ORDER,
-        transport: Transport.GRPC,
-        options: {
-          package: GRPC_PACKAGES.ORDER,
-          protoPath: PROTO_PATHS.ORDER,
-          url: process.env.GRPC_ORDER_SERVICE_URL,
-        },
+
+        inject: [ConfigService],
+
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.GRPC,
+
+          options: {
+            package: GRPC_PACKAGES.ORDER,
+            protoPath: PROTO_PATHS.ORDER,
+            url: configService.getOrThrow<string>(
+              GRPC_CONFIG_KEYS.ORDER_SERVICE_URL,
+            ),
+          },
+        }),
       },
     ]),
   ],

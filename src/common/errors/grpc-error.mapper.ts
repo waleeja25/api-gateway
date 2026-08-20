@@ -31,6 +31,10 @@ export function mapGrpcException(exception: unknown): ResolvedError {
 
   const status = mapGrpcStatusToHttp(grpcError.code);
 
+  if (status === HttpStatus.INTERNAL_SERVER_ERROR) {
+    return createInternalServerError();
+  }
+
   return {
     status,
     body: {

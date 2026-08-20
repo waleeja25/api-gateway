@@ -16,9 +16,7 @@ import { UserService } from './user.service';
     ClientsModule.registerAsync([
       {
         name: GRPC_CLIENTS.USER,
-
         inject: [ConfigService],
-
         useFactory: (configService: ConfigService) => ({
           transport: Transport.GRPC,
 

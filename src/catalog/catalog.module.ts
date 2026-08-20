@@ -1,7 +1,13 @@
 import { Module } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
-import { GRPC_CLIENTS, GRPC_PACKAGES, PROTO_PATHS } from '../common';
+import {
+  GRPC_CLIENTS,
+  GRPC_PACKAGES,
+  PROTO_PATHS,
+  GRPC_CONFIG_KEYS,
+} from '../common';
 
 import { CategoryController } from './category/category.controller';
 import { CategoryService } from './category/category.service';
@@ -11,15 +17,23 @@ import { ProductService } from './product/product.service';
 
 @Module({
   imports: [
-    ClientsModule.register([
+    ClientsModule.registerAsync([
       {
         name: GRPC_CLIENTS.CATALOG,
-        transport: Transport.GRPC,
-        options: {
-          package: GRPC_PACKAGES.CATALOG,
-          protoPath: PROTO_PATHS.CATALOG,
-          url: process.env.GRPC_CATALOG_SERVICE_URL,
-        },
+
+        inject: [ConfigService],
+
+        useFactory: (configService: ConfigService) => ({
+          transport: Transport.GRPC,
+
+          options: {
+            package: GRPC_PACKAGES.CATALOG,
+            protoPath: PROTO_PATHS.CATALOG,
+            url: configService.getOrThrow<string>(
+              GRPC_CONFIG_KEYS.CATALOG_SERVICE_URL,
+            ),
+          },
+        }),
       },
     ]),
   ],
