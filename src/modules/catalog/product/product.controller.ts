@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 
-import { PositiveIntPipe, ResourceName } from '../../common';
+import { PositiveIntPipe, ResourceName } from '../../../common';
 
 import { CreateProductDto, ProductQueryDto, UpdateProductDto } from './dto';
 

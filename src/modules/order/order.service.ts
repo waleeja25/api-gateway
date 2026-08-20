@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import type { ClientGrpc } from '@nestjs/microservices';
 import { OrderProto } from 'microservices-proto';
 
-import { CrudGrpcGateway, GRPC_CLIENTS, GRPC_SERVICES } from '../common';
+import { CrudGrpcGateway, GRPC_CLIENTS, GRPC_SERVICES } from '../../common';
 
 @Injectable()
 export class OrderService extends CrudGrpcGateway<

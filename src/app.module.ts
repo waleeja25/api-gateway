@@ -1,7 +1,6 @@
 import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 
 import { AppConfigModule } from './config';
-import { UserModule } from './user/user.module';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import {
   BadRequestExceptionFilter,
@@ -9,8 +8,7 @@ import {
   LoggingMiddleware,
   ResponseInterceptor,
 } from './common';
-import { CatalogModule } from './catalog/catalog.module';
-import { OrderModule } from './order/order.module';
+import { CatalogModule, OrderModule, UserModule } from './modules';
 import { HealthModule } from './health/health.module';
 
 @Module({

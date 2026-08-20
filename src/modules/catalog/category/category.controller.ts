@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 
-import { PositiveIntPipe, ResourceName } from '../../common';
+import { PositiveIntPipe, ResourceName } from '../../../common';
 import { CategoryService } from './category.service';
 
 import { CreateCategoryDto, UpdateCategoryDto } from './dto';

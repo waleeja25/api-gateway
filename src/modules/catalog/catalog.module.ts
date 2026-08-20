@@ -7,7 +7,7 @@ import {
   GRPC_PACKAGES,
   PROTO_PATHS,
   GRPC_CONFIG_KEYS,
-} from '../common';
+} from '../../common';
 
 import { CategoryController } from './category/category.controller';
 import { CategoryService } from './category/category.service';

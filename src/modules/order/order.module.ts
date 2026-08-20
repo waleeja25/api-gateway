@@ -7,7 +7,7 @@ import {
   GRPC_PACKAGES,
   PROTO_PATHS,
   GRPC_CONFIG_KEYS,
-} from '../common';
+} from '../../common';
 
 import { OrderService } from './order.service';
 import { OrderController } from './order.controller';

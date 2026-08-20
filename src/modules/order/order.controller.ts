@@ -8,7 +8,7 @@ import {
   Query,
 } from '@nestjs/common';
 
-import { PositiveIntPipe, ResourceName } from '../common';
+import { PositiveIntPipe, ResourceName } from '../../common';
 
 import { CreateOrderDto, ListOrderDto } from './dto';
 
