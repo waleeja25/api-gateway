@@ -15,6 +15,9 @@ export function mapGrpcStatusToHttp(grpcCode: number): HttpStatus {
     case Number(GrpcStatus.FAILED_PRECONDITION):
       return HttpStatus.PRECONDITION_FAILED;
 
+    case Number(GrpcStatus.UNAVAILABLE):
+      return HttpStatus.SERVICE_UNAVAILABLE;
+
     default:
       return HttpStatus.INTERNAL_SERVER_ERROR;
   }
