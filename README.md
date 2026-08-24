@@ -12,15 +12,28 @@ NestJS, Express, class-validator, gRPC (`@grpc/grpc-js`)
 |---|---|
 | Users | `POST /users`, `GET /users`, `GET /users/:id`, `PATCH /users/:id`, `DELETE /users/:id` |
 | Categories | `POST /categories`, `GET /categories`, `GET /categories/:id`, `PATCH /categories/:id`, `DELETE /categories/:id` |
-| Products | `POST /products`, `GET /products` (supports `page`, `limit`, `search`, `categoryId`), `GET /products/:id`, `PATCH /products/:id`, `DELETE /products/:id` |
-| Orders | `POST /orders`, `GET /orders` (supports `page`, `limit`, `userId`, `productId`), `GET /orders/:id`, `DELETE /orders/:id` |
+| Products | `POST /products`, `GET /products` (page/limit/search/categoryId), `GET /products/:id`, `PATCH /products/:id`, `DELETE /products/:id` |
+| Orders | `POST /orders`, `GET /orders` (page/limit/userId/productId), `GET /orders/:id`, `DELETE /orders/:id` |
 | Health | `GET /health` |
 
 Every response is wrapped as `{ success, message, data }`.
 
 ## Error handling
 
-Requests are validated with `class-validator` before reaching a controller (`BadRequestExceptionFilter` → `400`). Errors coming back from a downstream gRPC call are unwrapped by `GlobalExceptionFilter`: a typed `DomainException` (e.g. "email already exists") is mapped to its correct status (404/409/412/400/503) via `DOMAIN_ERROR_HTTP_STATUS`; a raw gRPC status (e.g. `UNAVAILABLE` when a downstream service is unreachable) falls back to `grpc-status.util.ts`; anything unrecognized becomes a generic `500` with the real error only logged server-side, never sent to the client.
+`BadRequestExceptionFilter` handles request validation failures. `GlobalExceptionFilter` unwraps errors from downstream gRPC calls: a typed `DomainException` maps to its correct status via `DOMAIN_ERROR_HTTP_STATUS`; a raw gRPC status (e.g. `UNAVAILABLE`) falls back to `grpc-status.util.ts`; anything unrecognized becomes a generic `500`.
+
+## Folder structure
+
+```
+src/
+├── modules/            # feature modules
+│   ├── user/
+│   ├── catalog/        # category/ and product/
+│   └── order/
+├── common/              # filters, errors, grpc client helpers, middleware, pipes
+├── config/
+└── health/
+```
 
 ## Running locally
 
